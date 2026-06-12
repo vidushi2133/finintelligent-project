@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FinIntelligence | Spending DNA Analysis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="orb orb-one"></div>
+  <div class="orb orb-two"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="FinIntelligence home">
+      <span class="brand-mark">FI</span>
+      <span><strong>FinIntelligence</strong><small>Spending DNA Analysis</small></span>
+    </a>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#analysis">Analysis</a>
+      <a href="#insights">Insights</a>
+      <a href="#security">Security</a>
+    </nav>
+    <a class="nav-cta" href="#upload">Start analysis</a>
+  </header>
+
+  <main>
+    <section id="home" class="hero section-pad">
+      <div class="hero-copy">
+        <p class="eyebrow">AI-powered personal finance intelligence</p>
+        <h1>Discover your spending DNA with clear, actionable insights.</h1>
+        <p class="hero-text">Upload a CSV or run the sample data to cluster transactions into spending personas, detect unusual purchases, and get practical budget recommendations.</p>
+        <div class="hero-actions">
+          <a class="primary-btn" href="#upload">Upload CSV</a>
+          <button class="secondary-btn" id="heroSampleBtn">Use sample data</button>
+        </div>
+        <div class="trust-row">
+          <span>Private by design</span><span>No bank login required</span><span>Works in browser</span>
+        </div>
+      </div>
+      <div class="hero-card glass-card">
+        <div class="mini-window-bar"><span></span><span></span><span></span></div>
+        <div class="dna-ring"><div>₹</div></div>
+        <h3>Financial Health Snapshot</h3>
+        <div class="hero-meter"><span style="width:76%"></span></div>
+        <div class="mini-stats">
+          <div><strong>520</strong><small>Transactions</small></div>
+          <div><strong>4</strong><small>Personas</small></div>
+          <div><strong>26</strong><small>Anomalies</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="feature-strip section-pad-sm">
+      <article><span>01</span><h3>Persona clustering</h3><p>Groups spending into realistic behavior profiles such as essentials, subscriptions, travel, and lifestyle spending.</p></article>
+      <article><span>02</span><h3>Anomaly detection</h3><p>Highlights unusual high-value transactions and category spikes before they become habits.</p></article>
+      <article><span>03</span><h3>Action plan</h3><p>Turns analysis into budget advice, saving opportunities, and spending control steps.</p></article>
+    </section>
+
+    <section id="upload" class="workspace section-pad">
+      <aside class="control-panel glass-card">
+        <div class="panel-head"><span class="icon">⌁</span><div><h2>Data Source</h2><p>CSV or sample transactions</p></div></div>
+        <label class="upload-box" for="csvInput">
+          <input id="csvInput" type="file" accept=".csv" hidden>
+          <span class="upload-icon">⇧</span>
+          <strong>Upload CSV file</strong>
+          <small>Columns supported: date, description, category, amount</small>
+        </label>
+        <div class="divider"><span>or</span></div>
+        <button class="panel-btn" id="sampleBtn">Use Sample Data</button>
+        <button class="link-btn" id="downloadCsvBtn">Download Sample CSV</button>
+        <div class="parameter-card">
+          <div class="between"><strong>Clusters (K)</strong><span id="kValue">4</span></div>
+          <input type="range" min="2" max="6" value="4" id="kSlider">
+          <button class="panel-btn muted" id="optimalBtn">Find optimal K</button>
+        </div>
+        <button class="run-btn" id="runBtn">Run ML Analysis</button>
+      </aside>
+
+      <section id="analysis" class="dashboard">
+        <div class="dashboard-head">
+          <div><p class="eyebrow">Live dashboard</p><h2>Professional spending intelligence</h2></div>
+          <span id="dataStatus">Sample data ready</span>
+        </div>
+        <div class="metric-grid">
+          <article class="metric-card"><small>Total Volume</small><strong id="totalVolume">₹0</strong><span id="txnCount">0 transactions</span></article>
+          <article class="metric-card"><small>Detected Anomalies</small><strong id="anomalyCount">0</strong><span>Outside normal behavior</span></article>
+          <article class="metric-card highlight"><small>Dominant Persona</small><strong id="dominantPersona">—</strong><span>Highest transaction group</span></article>
+          <article class="metric-card"><small>Avg Transaction</small><strong id="avgTxn">₹0</strong><span>Per purchase</span></article>
+        </div>
+        <div class="tabs" role="tablist">
+          <button class="tab active" data-tab="scatter">Cluster Scatter Plot</button>
+          <button class="tab" data-tab="breakdown">Spending Breakdown</button>
+          <button class="tab" data-tab="heatmap">Category Heatmap</button>
+        </div>
+        <div class="chart-card glass-card">
+          <canvas id="mainChart" width="1100" height="520"></canvas>
+        </div>
+      </section>
+    </section>
+
+    <section id="insights" class="section-pad insights-section">
+      <div class="section-title"><p class="eyebrow">AI Cluster Insights</p><h2>Personalized financial personas</h2></div>
+      <div class="insight-grid" id="insightGrid"></div>
+    </section>
+
+    <section id="security" class="security section-pad-sm">
+      <div><p class="eyebrow">Built for trust</p><h2>Your financial data stays under your control.</h2></div>
+      <div class="security-grid">
+        <article><strong>Browser-first demo</strong><span>CSV analysis runs locally in this version.</span></article>
+        <article><strong>Transparent logic</strong><span>Every persona explains categories, volume, and advice.</span></article>
+        <article><strong>Export friendly</strong><span>Use clean CSV transaction data without bank credentials.</span></article>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2026 FinIntelligence. Designed as a professional finance analytics website.</footer>
+  <script src="script.js"></script>
+</body>
+</html>
